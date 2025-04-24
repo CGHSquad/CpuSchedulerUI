@@ -31,15 +31,19 @@ namespace CpuSchedulerUI
             return list;
         }
 
-        public static string FormatResult(List<Process> processes, string algo)
+        public static (string output, double avgWt, double avgTat) FormatResultWithMetrics(List<Process> processes, string algo)
         {
             processes = processes.OrderBy(p => p.Id).ToList();
 
             double totalWt = 0, totalTat = 0;
             int count = processes.Count;
-            int burst = processes.Sum(p => p.BurstTime);
-            int last = processes.Max(p => p.CompletionTime);
-            int elapsed = last;
+            var valid = processes.Where(p => p.StartTime >= 0 && p.CompletionTime > 0).ToList();
+            int burst = valid.Sum(p => p.BurstTime);
+            int firstStart = valid.Min(p => p.ArrivalTime);
+            int lastEnd = valid.Max(p => p.CompletionTime);
+            int elapsed = Math.Max(1, lastEnd - firstStart); // avoid divide by 0
+
+            double cpuUtilization = (double)burst / elapsed * 100;
 
             var nl = Environment.NewLine;
             var output = $"Results for {algo}:{nl}{nl}";
@@ -48,7 +52,6 @@ namespace CpuSchedulerUI
 
             foreach (var p in processes)
             {
-                // skip invalid data
                 if (p.CompletionTime <= 0 || p.StartTime < 0)
                     continue;
 
@@ -59,15 +62,12 @@ namespace CpuSchedulerUI
 
             double avgWt = totalWt / count;
             double avgTat = totalTat / count;
-            double throughput = elapsed > 0 ? (double)count / elapsed : 0;
-            double cpuUtilization = elapsed > 0 ? (double)burst / elapsed * 100 : 0;
 
             output += $"\nAverage Waiting Time: {avgWt:F2}{nl}";
             output += $"Average Turnaround Time: {avgTat:F2}{nl}";
-            output += $"Throughput: {throughput:F2} processes/unit time{nl}";
             output += $"CPU Utilization: {cpuUtilization:F2}%{nl}";
 
-            return output;
+            return (output, avgWt, avgTat);
         }
     }
 }

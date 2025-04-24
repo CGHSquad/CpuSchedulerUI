@@ -83,7 +83,6 @@ C:/Users/chris/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/ref/
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Vulkan.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Controls.ColorPicker.dll
-/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Controls.DataGrid.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Desktop.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Diagnostics.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Fonts.Inter.dll
@@ -128,9 +127,14 @@ C:/Users/chris/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/ref/
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.AssemblyInfo.cs
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.csproj.CoreCompileInputs.cache
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.sourcelink.json
-/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/Avalonia/CpuSchedulerUI.dll
-/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/Avalonia/CpuSchedulerUI.pdb
-/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/refint/Avalonia/CpuSchedulerUI.dll
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSched.AFE5BAEC.Up2Date
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.genruntimeconfig.cache
 /Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/ref/CpuSchedulerUI.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/Avalonia.Win32.Automation.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/refint/CpuSchedulerUI.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/obj/Debug/net8.0/CpuSchedulerUI.pdb
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/LiveChartsCore.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/LiveChartsCore.SkiaSharpView.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/LiveChartsCore.SkiaSharpView.Avalonia.dll
+/Users/realcgh/RiderProjects/CpuSchedulerUI/CpuSchedulerUI/bin/Debug/net8.0/SkiaSharp.HarfBuzz.dll
