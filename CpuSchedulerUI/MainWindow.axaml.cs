@@ -3,6 +3,8 @@ using Avalonia.Interactivity;
 using CpuSchedulerUI.Schedulers;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace CpuSchedulerUI;
 
@@ -13,29 +15,39 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    private void OnRunSRTF(object? sender, RoutedEventArgs e)
+    private async void OnRunSRTF(object? sender, RoutedEventArgs e)
     {
         if (!int.TryParse(ProcessInput.Text, out int count))
         {
-            ResultOutput.Text = "Invalid number of processes.";
+            ResultOutput.Text = "Invalid input.";
             return;
         }
 
-        var processes = Utils.GenerateProcesses(count);
-        var result = SrtfScheduler.Run(processes);
-        ResultOutput.Text = Utils.FormatResult(result, "SRTF");
+        var output = await Task.Run(() =>
+        {
+            var processes = Utils.GenerateProcesses(count);
+            var result = SrtfScheduler.Run(processes);
+            return Utils.FormatResult(result, "SRTF");
+        });
+
+        ResultOutput.Text = output;
     }
 
-    private void OnRunMLFQ(object? sender, RoutedEventArgs e)
+    private async void OnRunMLFQ(object? sender, RoutedEventArgs e)
     {
         if (!int.TryParse(ProcessInput.Text, out int count))
         {
-            ResultOutput.Text = "Invalid number of processes.";
+            ResultOutput.Text = "Invalid input.";
             return;
         }
 
-        var processes = Utils.GenerateProcesses(count);
-        var result = MlfqScheduler.Run(processes);
-        ResultOutput.Text = Utils.FormatResult(result, "MLFQ");
+        var output = await Task.Run(() =>
+        {
+            var processes = Utils.GenerateProcesses(count);
+            var result = SrtfScheduler.Run(processes);
+            return Utils.FormatResult(result, "MLFQ");
+        });
+
+        ResultOutput.Text = output;
     }
 }

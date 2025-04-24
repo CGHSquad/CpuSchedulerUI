@@ -2,52 +2,72 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CpuSchedulerUI.Models;
-namespace CpuSchedulerUI;
+using System.Threading.Tasks;
 
-public static class Utils
+namespace CpuSchedulerUI
 {
-    public static List<Process> GenerateProcesses(int count)
+    public static class Utils
     {
-        var list = new List<Process>();
-        var rand = new Random();
-        int currentTime = 0;
-
-        for (int i = 0; i < count; i++)
+        public static List<Process> GenerateProcesses(int count)
         {
-            currentTime += rand.Next(1, 4);
-            list.Add(new Process
+            var list = new List<Process>();
+            var rand = new Random();
+            int currentTime = 0;
+
+            for (int i = 0; i < count; i++)
             {
-                Id = i + 1,
-                ArrivalTime = currentTime,
-                BurstTime = rand.Next(2, 6),
-                Priority = rand.Next(1, 4)
-            });
+                currentTime += rand.Next(1, 4);
+                list.Add(new Process
+                {
+                    Id = i + 1,
+                    ArrivalTime = currentTime,
+                    BurstTime = rand.Next(2, 6),
+                    Priority = rand.Next(1, 4),
+                    RemainingTime = 0,
+                    StartTime = -1
+                });
+            }
+
+            return list;
         }
 
-        return list;
-    }
-
-    public static string FormatResult(List<Process> processes, string algo)
-    {
-        double totalWT = 0, totalTAT = 0;
-        int first = processes.Min(p => p.ArrivalTime);
-        int last = processes.Max(p => p.CompletionTime);
-        int burst = processes.Sum(p => p.BurstTime);
-
-        var output = $"Results for {algo}:\n\n";
-        output += $"PID | Arrival | Burst | Start | Complete | Waiting | Turnaround\n";
-        foreach (var p in processes.OrderBy(p => p.Id))
+        public static string FormatResult(List<Process> processes, string algo)
         {
-            output += $"{p.Id,3} | {p.ArrivalTime,7} | {p.BurstTime,5} | {p.StartTime,5} | {p.CompletionTime,8} | {p.WaitingTime,7} | {p.TurnaroundTime,10}\n";
-            totalWT += p.WaitingTime;
-            totalTAT += p.TurnaroundTime;
+            processes = processes.OrderBy(p => p.Id).ToList();
+
+            double totalWt = 0, totalTat = 0;
+            int count = processes.Count;
+            int burst = processes.Sum(p => p.BurstTime);
+            int last = processes.Max(p => p.CompletionTime);
+            int elapsed = last;
+
+            var nl = Environment.NewLine;
+            var output = $"Results for {algo}:{nl}{nl}";
+            output += $"PID | Arrival | Burst | Start | Complete | Waiting | Turnaround{nl}";
+            output += new string('-', 65) + nl;
+
+            foreach (var p in processes)
+            {
+                // skip invalid data
+                if (p.CompletionTime <= 0 || p.StartTime < 0)
+                    continue;
+
+                output += $"{p.Id,3} | {p.ArrivalTime,7} | {p.BurstTime,5} | {p.StartTime,5} | {p.CompletionTime,8} | {p.WaitingTime,7} | {p.TurnaroundTime,10}{nl}";
+                totalWt += p.WaitingTime;
+                totalTat += p.TurnaroundTime;
+            }
+
+            double avgWt = totalWt / count;
+            double avgTat = totalTat / count;
+            double throughput = elapsed > 0 ? (double)count / elapsed : 0;
+            double cpuUtilization = elapsed > 0 ? (double)burst / elapsed * 100 : 0;
+
+            output += $"\nAverage Waiting Time: {avgWt:F2}{nl}";
+            output += $"Average Turnaround Time: {avgTat:F2}{nl}";
+            output += $"Throughput: {throughput:F2} processes/unit time{nl}";
+            output += $"CPU Utilization: {cpuUtilization:F2}%{nl}";
+
+            return output;
         }
-
-        output += $"\nAverage Waiting Time: {totalWT / processes.Count:F2}\n";
-        output += $"Average Turnaround Time: {totalTAT / processes.Count:F2}\n";
-        output += $"Throughput: {(double)processes.Count / (last - first):F2} processes/unit time\n";
-        output += $"CPU Utilization: {(double)burst / (last - first) * 100:F2}%\n";
-
-        return output;
     }
 }
