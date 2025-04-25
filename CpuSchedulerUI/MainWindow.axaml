@@ -1,9 +1,9 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:lv="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
-        x:Class="CpuSchedulerUI.MainWindow"
-        x:DataType="local:MainWindow"
         xmlns:local="clr-namespace:CpuSchedulerUI"
+        x:DataType="local:MainWindow"
+        x:Class="CpuSchedulerUI.MainWindow"
         Title="CPU Scheduler UI"
         Width="800" Height="600">
 
