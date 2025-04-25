@@ -13,7 +13,7 @@ namespace CpuSchedulerUI.Schedulers
             foreach (var p in processes)
                 p.RemainingTime = p.BurstTime;
 
-            int time = 0, completed = 0;
+            int time = 0, completed = 0, activeTime = 0;
 
             while (completed < processes.Count)
             {
@@ -25,7 +25,7 @@ namespace CpuSchedulerUI.Schedulers
 
                 if (available == null)
                 {
-                    time++;
+                    time++; // CPU idle
                     continue;
                 }
 
@@ -34,6 +34,7 @@ namespace CpuSchedulerUI.Schedulers
 
                 available.RemainingTime--;
                 time++;
+                activeTime++;
 
                 if (available.RemainingTime == 0)
                 {
@@ -42,25 +43,9 @@ namespace CpuSchedulerUI.Schedulers
                 }
             }
 
-            PrintResults(processes, "SRTF");
+            Utils.LastRunCpuActiveTime = activeTime; // Store for later metrics
+            Utils.LastRunTotalTime = time;
             return processes;
         }
-
-        private static void PrintResults(List<Process> processes, string label)
-        {
-            Console.WriteLine($"\nResults for {label}:");
-            double totalWT = 0, totalTAT = 0;
-
-            foreach (var p in processes)
-            {
-                Console.WriteLine($"P{p.Id} - AT: {p.ArrivalTime}, BT: {p.BurstTime}, CT: {p.CompletionTime}, WT: {p.WaitingTime}, TAT: {p.TurnaroundTime}");
-                totalWT += p.WaitingTime;
-                totalTAT += p.TurnaroundTime;
-            }
-
-            Console.WriteLine($"\nAverage Waiting Time: {totalWT / processes.Count:F2}");
-            Console.WriteLine($"Average Turnaround Time: {totalTAT / processes.Count:F2}");
-        }
-        
     }
 }

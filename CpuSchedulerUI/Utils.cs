@@ -8,6 +8,8 @@ namespace CpuSchedulerUI
 {
     public static class Utils
     {
+        public static int LastRunCpuActiveTime { get; set; }
+        public static int LastRunTotalTime { get; set; }
         public static List<Process> GenerateProcesses(int count)
         {
             var list = new List<Process>();
@@ -43,7 +45,7 @@ namespace CpuSchedulerUI
             int lastEnd = valid.Max(p => p.CompletionTime);
             int elapsed = Math.Max(1, lastEnd - firstStart); // avoid divide by 0
 
-            double cpuUtilization = (double)burst / elapsed * 100;
+            double cpuUtilization = (double)Utils.LastRunCpuActiveTime / Utils.LastRunTotalTime * 100;
 
             var nl = Environment.NewLine;
             var output = $"Results for {algo}:{nl}{nl}";
