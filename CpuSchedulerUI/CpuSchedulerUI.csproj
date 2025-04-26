@@ -20,5 +20,7 @@
         </PackageReference>
         <PackageReference Include="LiveChartsCore" Version="2.0.0-rc5.4" />
         <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc5.4" />
+        <PackageReference Include="NUnit" Version="4.3.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
     </ItemGroup>
 </Project>

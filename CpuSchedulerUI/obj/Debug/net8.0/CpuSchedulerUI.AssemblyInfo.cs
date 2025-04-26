@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CpuSchedulerUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f400d11d2dc7bce0b29a4974619a822e873416e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7b18cf3b28fa883719b9a12f257f5910059b982")]
 [assembly: System.Reflection.AssemblyProductAttribute("CpuSchedulerUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CpuSchedulerUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
