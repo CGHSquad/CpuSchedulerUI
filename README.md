@@ -28,3 +28,6 @@ The project features an intuitive desktop interface, live performance charting (
    ```bash
    git clone https://github.com/CGHSquad/CpuSchedulerUI.git
    cd CpuSchedulerUI
+## License
+
+This project is licensed under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).
